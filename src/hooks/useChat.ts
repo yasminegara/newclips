@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { queryOllama } from "@/services/ollamaService";
+import { chat_with_ai } from "@/lib/chatwithai";
 
 export interface ChatMessage {
   id: string;
@@ -36,7 +37,7 @@ export function useChat(model?: string) {
     setStatus("loading");
     setInput("");
 
-    const aiResponse = await queryOllama(input, model);
+    const aiResponse = await chat_with_ai(input);
 
     const assistantMessage: ChatMessage = {
       id: (Date.now() + 1).toString(),
